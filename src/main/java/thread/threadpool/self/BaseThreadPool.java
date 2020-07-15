@@ -5,8 +5,6 @@ import java.util.Queue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.data.redis.core.TimeoutUtils;
-
 public class BaseThreadPool extends Thread implements ThreadPool {
 
 	/** 初始化线程数 */
