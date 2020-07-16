@@ -1,10 +1,10 @@
-package disputor.producer;
+package disputor.stu01base.producer;
 
 import java.nio.ByteBuffer;
 
 import com.lmax.disruptor.RingBuffer;
 
-import disputor.entity.LongEvent;
+import disputor.stu01base.entity.LongEvent;
 
 /**
  * 消费者实现为WorkHandler接口，是Disruptor框架中的类
@@ -30,16 +30,21 @@ public class LongEventProducer {
      * @date: 2019年12月10日 下午5:11:22
      */
     public void onData(ByteBuffer bb) {
+        // 获取下一个可用的序列号
         long sequence = ringBuffer.next(); // Grab the next sequence
-                                           // //获取下一个可用的序列号
+
         try {
-            LongEvent event = ringBuffer.get(sequence); // Get the entry in the
-                                                        // Disruptor
-                                                        // //通过序列号获取空闲可用的LongEvent
-            // for the sequence
-            event.set(bb.getLong(0)); // Fill with data //设置数值
+            // Get the entry in the Disruptor
+            // 通过序列号获取空闲可用的LongEvent(空间已经提前分配好)
+            LongEvent event = ringBuffer.get(sequence);
+
+            // for the sequence Fill with data
+            // 给环中相应位置内存设置数值
+            event.setValue(bb.getLong(0));
         } finally {
-            ringBuffer.publish(sequence); // 数据发布，只有发布后的数据才会真正被消费者看见
+            // 此处必须在finally中写
+            // 数据发布，只有发布后的数据才会真正被消费者看见
+            ringBuffer.publish(sequence);
         }
     }
 }

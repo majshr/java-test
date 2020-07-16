@@ -1,4 +1,4 @@
-package disputor.test;
+package disputor.stu01base.test;
 
 public final class FalseSharing implements Runnable {
     public final static int NUM_THREADS = 4; // change

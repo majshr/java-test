@@ -1,8 +1,8 @@
-package disputor.consumer;
+package disputor.stu01base.consumer;
 
 import com.lmax.disruptor.EventHandler;
 
-import disputor.entity.LongEvent;
+import disputor.stu01base.entity.LongEvent;
 
 /**
  * 消费者实现为WorkHandler接口，是Disruptor框架中的类
@@ -17,6 +17,6 @@ public class LongEventConsumer implements EventHandler<LongEvent> {
      */
     @Override
     public void onEvent(LongEvent event, long sequence, boolean endOfBatch) {
-        System.out.println("Event: " + event);
+        System.out.println("Event long value: " + event.getValue());
     }
 }
