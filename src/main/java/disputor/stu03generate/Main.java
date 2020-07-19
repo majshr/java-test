@@ -76,10 +76,11 @@ public class Main {
         disruptor.start();
 
         CountDownLatch latch = new CountDownLatch(1);
+
         // 生产者准备
         executor.submit(new TradePublisher(latch, disruptor));
 
-        latch.await();//等待生产者完事.
+        latch.await();// 等待生产者完事.
 
         disruptor.shutdown();
         executor.shutdown();

@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 
 /**
  * 单消费者
- * 使用EventProcessor消息处理器
+ * 使用EventProcessor消息处理器, 来连接消费消息
  */
 public class MainEventProcessor {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -35,7 +35,7 @@ public class MainEventProcessor {
         SequenceBarrier sequenceBarrier = ringBuffer.newBarrier();
 
         // 创建消息处理器
-        // 此处只有一个TradeHandler, 即只有一个消费者
+        // 此处只有一个TradeHandler, 即只有一种消费者
         BatchEventProcessor<Trade> transProcessor = new BatchEventProcessor<Trade>(
                 ringBuffer, sequenceBarrier, new TradeHandler());
 

@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 
 import com.lmax.disruptor.RingBuffer;
 
-import disputor.stu01base.entity.LongEvent;
+import disputor.stu01base.event.LongEvent;
 
 /**
  * 消费者实现为WorkHandler接口，是Disruptor框架中的类
@@ -24,7 +24,8 @@ public class LongEventProducer {
     }
 
     /**
-     * 将数据推入到缓冲区的方法：将数据装载到ringBuffer
+     * 生产者方法
+     * 将数据推入到缓冲区：将数据装载到ringBuffer
      * 
      * @param bb
      * @date: 2019年12月10日 下午5:11:22

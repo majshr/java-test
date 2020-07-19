@@ -1,4 +1,4 @@
-package disputor.stu01base.entity;
+package disputor.stu01base.event;
 
 /**
  * 事件, 放到Disputor队列中, 发布订阅的

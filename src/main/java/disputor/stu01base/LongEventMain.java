@@ -9,8 +9,8 @@ import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
 import disputor.stu01base.consumer.LongEventConsumer;
-import disputor.stu01base.entity.LongEvent;
-import disputor.stu01base.entity.LongEventFactory;
+import disputor.stu01base.event.LongEvent;
+import disputor.stu01base.event.LongEventFactory;
 import disputor.stu01base.producer.LongEventProducerWithTranslator;
 
 public class LongEventMain {
@@ -20,7 +20,7 @@ public class LongEventMain {
         ExecutorService executor = Executors.newCachedThreadPool();
 
         // The factory for the event
-        // 事件工厂
+        // 事件工厂, 用于生成事件; disputor使用, 提前创建好对象, 非配好环的内存
         LongEventFactory factory = new LongEventFactory();
 
         // Specify the size of the ring buffer, must be power of 2.

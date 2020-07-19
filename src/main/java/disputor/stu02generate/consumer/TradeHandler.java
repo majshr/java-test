@@ -12,14 +12,14 @@ import java.util.UUID;
 public class TradeHandler implements EventHandler<Trade>, WorkHandler<Trade> {
     @Override
     public void onEvent(Trade trade) throws Exception {
-        this.onEvent(trade);
-    }
-
-    @Override
-    public void onEvent(Trade trade, long sequence, boolean endOfBatch) throws Exception {
         // 处理具体消费逻辑
         // 生成订单, 打印
         trade.setId(UUID.randomUUID().toString());
         System.out.println(trade.getId());
+    }
+
+    @Override
+    public void onEvent(Trade trade, long sequence, boolean endOfBatch) throws Exception {
+        this.onEvent(trade);
     }
 }

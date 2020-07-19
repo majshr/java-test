@@ -12,8 +12,8 @@ import java.util.concurrent.Executors;
  */
 public class MainWorkerPool {
     public static void main(String[] args) throws InterruptedException {
-        int BUFFER_SIZE=1024;
-        int THREAD_NUMBERS=4;
+        int BUFFER_SIZE = 1024;
+        int THREAD_NUMBERS = 4;
 
         EventFactory<Trade> eventFactory = new EventFactory<Trade>() {
             public Trade newInstance() {
@@ -21,7 +21,8 @@ public class MainWorkerPool {
             }
         };
 
-        RingBuffer<Trade> ringBuffer = RingBuffer.createSingleProducer(eventFactory, BUFFER_SIZE);
+        RingBuffer<Trade> ringBuffer = RingBuffer.createSingleProducer(
+                eventFactory, BUFFER_SIZE);
 
         SequenceBarrier sequenceBarrier = ringBuffer.newBarrier();
 
@@ -29,15 +30,16 @@ public class MainWorkerPool {
 
         WorkHandler<Trade> handler = new TradeHandler();
 
-        WorkerPool<Trade> workerPool = new WorkerPool<Trade>(ringBuffer, sequenceBarrier, new IgnoreExceptionHandler(), handler);
+        WorkerPool<Trade> workerPool = new WorkerPool<Trade>(
+                ringBuffer, sequenceBarrier, new IgnoreExceptionHandler(), handler);
         // 启动执行器
         workerPool.start(executor);
 
         // 生产数据, 不依赖于线程池了, 使用ringBuffer发布数据
         //下面这个生产8个数据
-        for(int i=0;i<8;i++){
-            long seq=ringBuffer.next();
-            ringBuffer.get(seq).setPrice(Math.random()*9999);
+        for (int i = 0; i < 8; i++) {
+            long seq = ringBuffer.next();
+            ringBuffer.get(seq).setPrice(Math.random() * 9999);
             ringBuffer.publish(seq);
         }
 

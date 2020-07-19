@@ -55,7 +55,7 @@ public class Main {
 
         // 生产者有100个, 每个生产者提交100个任务
         final CountDownLatch latch = new CountDownLatch(1);
-        for (int i = 0; i < 100; i++) {  
+        for (int i = 0; i < 10; i++) {
         	final Producer p = new Producer(ringBuffer);
         	new Thread(new Runnable() {
 				@Override

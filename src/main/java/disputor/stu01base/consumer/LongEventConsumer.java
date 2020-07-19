@@ -2,7 +2,7 @@ package disputor.stu01base.consumer;
 
 import com.lmax.disruptor.EventHandler;
 
-import disputor.stu01base.entity.LongEvent;
+import disputor.stu01base.event.LongEvent;
 
 /**
  * 消费者实现为WorkHandler接口，是Disruptor框架中的类

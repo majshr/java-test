@@ -2,7 +2,7 @@ package disputor.stu01base.producer;
 
 import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
-import disputor.stu01base.entity.LongEvent;
+import disputor.stu01base.event.LongEvent;
 
 import java.nio.ByteBuffer;
 

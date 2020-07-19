@@ -1,0 +1,3 @@
+直接使用RingBuffer对象, 两种使用方式
+    使用EventProcessor消息处理器。
+    使用WorkerPool消息处理器。

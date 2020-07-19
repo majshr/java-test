@@ -1,4 +1,4 @@
-package disputor.stu01base.entity;
+package disputor.stu01base.event;
 
 import com.lmax.disruptor.EventFactory;
 
